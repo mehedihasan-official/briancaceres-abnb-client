@@ -4,6 +4,7 @@ import { Disclosure, Transition } from "@headlessui/react"; // Used for handling
 import { MdMenu } from "react-icons/md"; // Icon for the mobile menu button
 import { FaUserCircle } from "react-icons/fa"; // Default user icon
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider"; // Importing AuthContext for authentication
+import Logo from "../../assets/vacationShare.png"
 
 const Header = () => {
   const { usersData } = useContext(AuthContext); // Getting user data from AuthContext
@@ -27,8 +28,8 @@ const Header = () => {
         <div>
           <Link to="/">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"
-              className="w-20 md:w-32" // Responsive sizing for different screen sizes
+              src={Logo}
+              className="w-52 md:w-62" // Responsive sizing for different screen sizes
               alt="Airbnb Logo"
             />
           </Link>
