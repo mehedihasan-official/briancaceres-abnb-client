@@ -10,6 +10,7 @@ import { HiOutlineHomeModern } from "react-icons/hi2";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Loading from "../../components/Loading";
+import logo from "../../assets/vacationShare.png"; // Assuming you have a logo image
 
 
 const HostingDashboard = () => {
@@ -28,10 +29,10 @@ const HostingDashboard = () => {
 
         {/* Sidebar for LG screens */}
         <div className="lg:w-64 lg:flex-shrink-0 md:bg-slate-200">
-          <div className="mt-5 ml-5">
+          <div className=" ml-5">
           <Link to='/'><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"
-            className="w-20 md:w-32"
+            src={logo}
+            className="w-40 md:w-52"
             alt="Airbnb Logo"
           /></Link>
           </div>
