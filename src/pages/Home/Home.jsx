@@ -1,7 +1,38 @@
-import heroImage from "../../assets/homepage-hero-section-image.jpg"; // Adjust the path as necessary
-import homepageSuccess from "../../assets/homepage-success.svg"; // Adjust the path as necessary
+import { useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import heroImage from "../../assets/homepage-hero-section-image.jpg";
+import homepageSuccess from "../../assets/homepage-success.svg";
+
+// Example images for the slider (replace with your actual image assets)
+const sliderImages = [
+  {
+    src: heroImage,
+    title: "Beach Paradise",
+    location: "Cox's Bazar, Bangladesh",
+  },
+  {
+    src: heroImage,
+    title: "Mountain Escape",
+    location: "Bandarban, Bangladesh",
+  },
+  {
+    src: heroImage,
+    title: "City Lights",
+    location: "Dhaka, Bangladesh",
+  },
+];
 
 const Home = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="container mx-auto md:px-6 lg:px-8">
       {/* Hero Section */}
@@ -36,7 +67,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ✅ New Section Below Hero */}
+      {/* Success Section */}
       <div className="my-20 md:text-center space-y-5 px-4">
         <img
           src={homepageSuccess}
@@ -50,6 +81,55 @@ const Home = () => {
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           We'll handle listing, marketing, booking and payment. Plus, we only get paid when you do.
         </p>
+      </div>
+
+      {/* ✅ Carousel Section */}
+      <div className="my-20 px-4 text-center space-y-8">
+        <h2 className="text-4xl font-bold text-[#5634d0]">Explore Our Top Destinations</h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Discover beautiful destinations curated just for you. Browse through our top picks!
+        </p>
+
+        {/* Arrow Buttons */}
+        <div className="flex justify-center items-center gap-6">
+          <button
+            onClick={prevSlide}
+            className="p-3 bg-gray-200 hover:bg-gray-300 rounded-full transition"
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="p-3 bg-gray-200 hover:bg-gray-300 rounded-full transition"
+          >
+            <FaArrowRight />
+          </button>
+        </div>
+
+        {/* Slider Images */}
+        <div className="flex justify-center items-center mt-6">
+          <div className="w-full max-w-4xl overflow-hidden">
+            <div className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)`, width: `${sliderImages.length * 100}%` }}
+            >
+              {sliderImages.map((slide, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img
+                      src={slide.src}
+                      alt={slide.title}
+                      className="w-full h-64 object-cover"
+                    />
+                    <div className="p-4 text-left">
+                      <h3 className="text-xl font-semibold">{slide.title}</h3>
+                      <p className="text-gray-500">{slide.location}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Rest of your content */}
