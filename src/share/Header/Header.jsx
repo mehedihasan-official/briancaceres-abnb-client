@@ -22,7 +22,7 @@ const Header = () => {
   const isUserLoggedIn = usersData && usersData.length > 0;
 
   return (
-    <div className="container mx-auto bg-slate-300 py-5 px-5">
+    <div className="container mx-auto bg-slate-300  px-5">
       <div className="flex items-center justify-between">
         {/* Logo Section */}
         <div>
@@ -75,7 +75,7 @@ const Header = () => {
                   {/* Mobile Menu Links */}
                   <Disclosure.Panel >
                     <div className="">
-                    <ul className="menu p-4 text-gray-700 font-bold text-xl">
+                    <ul className="menu text-gray-700 font-bold text-xl">
                       <li>
                         <Link to="/" onClick={toggleMobileMenu}>
                           Home
