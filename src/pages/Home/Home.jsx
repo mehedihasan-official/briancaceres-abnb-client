@@ -26,16 +26,18 @@ const Home = () => {
         <div className="absolute inset-0 bg-black bg-opacity-10"></div>
         
         {/* Content */}
-        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        <div className="relative h-full flex flex-col items-start justify-center text-center text-white px-4">
+          <h1 className="text-5xl text-start md:text-5xl lg:text-6xl font-semibold mb-4">
             List your timeshare rentals
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl">
+          <p className="text-xl text-start md:text-xl lg:text-2xl mb-8 max-w-2xl">
             It's never been easier to rent your timeshare.
 Sign up today and own your unused nights.</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+          <div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded text-lg transition duration-300">
             Get Started
           </button>
+          </div>
         </div>
       </div>
 
