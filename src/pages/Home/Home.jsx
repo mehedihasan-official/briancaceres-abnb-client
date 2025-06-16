@@ -2,23 +2,26 @@ import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import heroImage from "../../assets/homepage-hero-section-image.jpg";
 import homepageSuccess from "../../assets/homepage-success.svg";
+import sliderImg3 from "../../assets/slider-img-3.jpg";
+import sliderImg2 from "../../assets/slider-img-4.jpg";
+import sliderImg1 from "../../assets/slider-img-1.jpg"
 
 // Example images for the slider (replace with your actual image assets)
 const sliderImages = [
   {
-    src: heroImage,
-    title: "Beach Paradise",
-    location: "Cox's Bazar, Bangladesh",
+    src: sliderImg1,
+    title: " Club Wyndham Bali Hai Villas ",
+    location: " Princeville, HI ",
   },
   {
-    src: heroImage,
-    title: "Mountain Escape",
-    location: "Bandarban, Bangladesh",
+    src: sliderImg2,
+    title: " Club Wyndham Great Smokies Lodge",
+    location: "Sevierville, TN",
   },
   {
-    src: heroImage,
-    title: "City Lights",
-    location: "Dhaka, Bangladesh",
+    src: sliderImg3,
+    title: " Club Wyndham Austin ",
+    location: "Austin, TX",
   },
 ];
 
@@ -84,23 +87,24 @@ const Home = () => {
       </div>
 
       {/* ✅ Carousel Section */}
-      <div className="my-20 px-4 text-center space-y-8">
-        <h2 className="text-4xl font-bold text-[#5634d0]">Explore Our Top Destinations</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover beautiful destinations curated just for you. Browse through our top picks!
+      <div className="my-20 px-4 md:text-center space-y-4">
+        <h2 className="text-2xl font-bold text-[#5634d0]">In-demand Destinations</h2>
+        <p className="text-base text-gray-600 max-w-2xl mx-auto">
+          Do you own property in one of these locations?
+See where stays are in high demand!
         </p>
 
         {/* Arrow Buttons */}
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-start items-center gap-6">
           <button
             onClick={prevSlide}
-            className="p-3 bg-gray-200 hover:bg-gray-300 rounded-full transition"
+            className="p-3  hover:bg-gray-300 rounded-full transition shadow-lg"
           >
             <FaArrowLeft />
           </button>
           <button
             onClick={nextSlide}
-            className="p-3 bg-gray-200 hover:bg-gray-300 rounded-full transition"
+            className="p-3 text-white bg-blue-700 hover:bg-gray-300 rounded-full transition shadow-md"
           >
             <FaArrowRight />
           </button>
@@ -118,7 +122,7 @@ const Home = () => {
                     <img
                       src={slide.src}
                       alt={slide.title}
-                      className="w-full h-64 object-cover"
+                      className="w h-64 "
                     />
                     <div className="p-4 text-left">
                       <h3 className="text-xl font-semibold">{slide.title}</h3>
