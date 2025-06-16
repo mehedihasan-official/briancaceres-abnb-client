@@ -1,143 +1,52 @@
-import { useContext, useState, useEffect } from "react";
-import { BsSearch } from "react-icons/bs";
-import { FaTree, FaUmbrellaBeach, FaWarehouse } from "react-icons/fa";
-import { MdHouseboat } from "react-icons/md";
-import { GiIsland } from "react-icons/gi";
-import Cards from "../../components/Cards/Cards";
-import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
-import DOMPurify from "dompurify";
-import Loading from "../../components/Loading";
 
-const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(true); // Loading state
-  const itemsPerPage = 9;
 
-  const { AllHotelData } = useContext(AuthContext);
+const Home = () => {  
+  
 
-  useEffect(() => {
-    if (AllHotelData && AllHotelData.length > 0) {
-      setLoading(false);
-    }
-  }, [AllHotelData]);
-
-  const selectedCategories = [
-    "Tropical",
-    "Beach",
-    "Tiny homes",
-    "Farms",
-    "Islands",
-  ];
-
-  const categoryIcons = {
-    Tropical: <FaTree />,
-    Beach: <FaUmbrellaBeach />,
-    "Tiny homes": <MdHouseboat />,
-    Farms: <FaWarehouse />,
-    Islands: <GiIsland />,
-  };
-
-  // Handle search input with sanitization
-  const handleSearchInput = (e) => {
-    const sanitizedInput = DOMPurify.sanitize(e.target.value);
-    setSearchTerm(sanitizedInput);
-  };
-
-  const filteredData = AllHotelData
-    ? AllHotelData.filter(
-        (item) =>
-          selectedCategory === "All" || item.category === selectedCategory
-      )
-        .filter(
-          (item) =>
-            (item.name &&
-              item.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (item.location &&
-              item.location.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
-        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-    : [];
-
-  const totalPages = Math.ceil(
-    AllHotelData?.filter(
-      (item) => selectedCategory === "All" || item.category === selectedCategory
-    ).length / itemsPerPage
-  );
-
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div className="container mx-auto px-4 md:px-6 lg:px-8">
-      {/* Search bar with search icon */}
-      <div className="flex justify-center items-center mt-5 mb-4">
-        <div className="bg-white rounded-full border p-3 shadow w-full max-w-4xl mx-auto flex items-center">
-          <BsSearch size={20} className="text-gray-500 mr-2" />
-          <input
-            type="text"
-            placeholder="Search by name or location..."
-            className="w-full h-10 pl-4 rounded-full outline-none"
-            value={searchTerm}
-            onChange={handleSearchInput} // Updated onChange handler
+      {/* Hero Section */}
+      <div className="relative h-[500px] w-full overflow-hidden mb-12">
+        {/* Background Image - Replace with your actual image path */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Beautiful vacation home"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Mobile-specific image - replace with a more vertical composition if needed */}
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            alt="Beautiful vacation home - mobile view"
+            className="w-full h-full object-cover object-center md:hidden"
           />
         </div>
-      </div>
-
-      {/* Filter Section */}
-      <div className="flex flex-col justify-center items-center mb-4 pt-10">
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-          {selectedCategories.map((category, index) => (
-            <button
-              key={index}
-              className={`flex items-center justify-center p-3 md:p-4 border rounded transition-colors duration-300 ${
-                selectedCategory === category
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-gray-700"
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {categoryIcons[category]}
-              <span className="ml-2 hidden md:inline">{category}</span>
-            </button>
-          ))}
+        
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        {/* Content */}
+        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            List your timeshare rentals
+          </h1>
+          <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl">
+            It's never been easier to rent your timeshare.
+Sign up today and own your unused nights.</p>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+            Get Started
+          </button>
         </div>
       </div>
 
-      {/* Cards Section */}
-      <div className="w-full grid grid-cols-1 justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 px-2">
-        {filteredData.map((item, index) => (
-          <Cards key={index} data={item} />
-        ))}
-      </div>
-
-      {/* Pagination Section */}
-      <div className="flex items-center justify-center mt-4">
-        <button
-          className="mr-2 px-4 py-2 border rounded focus:outline-none"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          {"<"}
-        </button>
-        <span className="mx-2">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="ml-2 px-4 py-2 border rounded focus:outline-none"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          {">"}
-        </button>
+      {/* Rest of your content */}
+      <div className="my-8">
+        {/* Your existing search and category components */}
+        {/* ... */}
+        
+        {/* Your cards and pagination */}
+        {/* ... */}
       </div>
     </div>
   );
