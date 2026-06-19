@@ -4,7 +4,7 @@ import { Disclosure, Transition } from "@headlessui/react"; // Used for handling
 import { MdMenu } from "react-icons/md"; // Icon for the mobile menu button
 import { FaUserCircle } from "react-icons/fa"; // Default user icon
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider"; // Importing AuthContext for authentication
-import Logo from "../../assets/vacationShare.png"
+import Logo from "../../assets/logo-ren-transparent.png"
 
 const Header = () => {
   const { usersData } = useContext(AuthContext); // Getting user data from AuthContext
