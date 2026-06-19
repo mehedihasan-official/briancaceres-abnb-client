@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import heroImage from "../../assets/homepage-hero-section-image.jpg";
+import heroImage from "../../assets/hero-section-image.jpeg";
 import homepageSuccess from "../../assets/homepage-success.svg";
 import sliderImg3 from "../../assets/slider-img-3.jpg";
 import sliderImg2 from "../../assets/slider-img-4.jpg";
