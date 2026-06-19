@@ -14,6 +14,7 @@ import Insights from "../pages/Insights/Insights";
 import GuideBooks from "../pages/GuideBooks/GuideBooks";
 import Reservations from "../pages/Reservations/Reservations";
 import IndividualEarnings from "../pages/IndividualEarnings/IndividualEarnings";
+import ListVacationStay from "../pages/ListVacationStay/ListVacationStay";
 
 export const router = createBrowserRouter([
      {
@@ -36,10 +37,13 @@ export const router = createBrowserRouter([
                  path: 'contact',
                  element: <Contact/>
              },
-             
              {
                  path: 'profile',
                  element: <Profile/>
+             },
+             {
+                 path: 'list-vacation-stay',
+                 element: <ListVacationStay/>
              },
              {
                 path: 'individual-earnings/:name',

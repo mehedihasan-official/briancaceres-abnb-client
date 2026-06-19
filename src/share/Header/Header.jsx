@@ -87,6 +87,11 @@ const Header = () => {
                         </Link>
                       </li>
                       <li>
+                        <Link to="/list-vacation-stay" onClick={toggleMobileMenu} className="text-blue-600">
+                          List Your Stay
+                        </Link>
+                      </li>
+                      <li>
                         <Link
                           to="/hosting-dashboard/listing"
                           onClick={toggleMobileMenu}
@@ -147,9 +152,10 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex gap-10 font-semibold text-lg text-gray-700">
+        <div className="hidden md:flex gap-8 font-semibold text-lg text-gray-700">
           <Link to="/">Home</Link>
           <Link to="/">Bookings</Link>
+          <Link to="/list-vacation-stay" className="text-blue-600 hover:text-blue-800 transition-colors">List Your Stay</Link>
           <Link to="/hosting-dashboard/listing">My Hosting</Link>
           <Link to="/contact">Contact</Link>
         </div>
